@@ -31,11 +31,6 @@ items:
                 secretKeyRef:
                   key: bot.fb_page_token.key
                   name: hasura-secrets
-            - name: MOVIE_DB_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: bot.movie_db_token.key
-                  name: hasura-secrets
           imagePullPolicy: IfNotPresent
           name: bot
           ports:

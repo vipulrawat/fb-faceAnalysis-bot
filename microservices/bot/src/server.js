@@ -117,7 +117,7 @@ function handleMessage(senderId,received_message){
 }
 
 function describesImage(result){
-  let cat = JSON.stringify(result.categories[0].name);
+  let cat = JSON.stringify(result.description.captions);
   return cat;
 }
 

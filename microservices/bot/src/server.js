@@ -127,11 +127,9 @@ function getImageDetails(url){
     "content-type": "application/json",
     "url": "https://goo.gl/Hpz7gi",
     "visual-features":"Tags, Faces"
-  }).then((result) => {
+      }).then((result) => {
       return result;
-  }).catch((err)=>{
-      throw err;
-}
+  });
 }
 
 app.listen(8080, function () {

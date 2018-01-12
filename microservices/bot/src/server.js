@@ -117,14 +117,22 @@ function handleMessage(senderId,received_message){
 }
 
 function describesImage(result){
-  if(Object.keys(result.categories[0].detail.celebrities).length>0){
+  var txtMessage;
+  if(Object.keys(result.categories[0].detail.celebrities).length===1){
     //let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
     //let cat = JSON.stringify(result.description.captions);
     //return cat;
-    Object.keys(result.categories[0].detail.celebrities).forEach(function(element){
-      let cat = JSON.stringify(element.name);
-      return cat;
-    });
+    let name = JSON.stringify(result.categories[0].detail.celebrities[0].name);
+    txtMessage=`Oh thats probably `+name+` not you!`;
+    return txtMessage;
+  }else if(Object.keys(result.categories[0].detail.celebrities).length>1){
+    let caption = JSON.stringify(result.description.captions[0].text);
+    return caption;
+  }else{
+    let age=result.faces[0].age;
+    let sex=result.faces[0].gender;
+      let caption = JSON.stringify(result.description.captions[0].text);
+    txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
   }
   return `no`;
 }

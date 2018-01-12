@@ -94,7 +94,7 @@ function handleMessage(senderId,received_message){
   }else if (received_message.attachments){
 
   let tmp =  microsofComputerVision.analyzeImage({
-      "Ocp-Apim-Subscription-Key": "d68bd30ad0c145fabd7ca084ea2c8752",
+      "Ocp-Apim-Subscription-Key": d68bd30ad0c145fabd7ca084ea2c8752,
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": "https://goo.gl/Hpz7gi",

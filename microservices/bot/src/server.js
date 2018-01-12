@@ -133,6 +133,7 @@ function describesImage(result){
     let sex=result.faces[0].gender;
       let caption = JSON.stringify(result.description.captions[0].text);
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
+    return txtMessage;
   }
   return `no`;
 }

@@ -91,6 +91,7 @@ function handleMessage(senderId,received_message){
     response={
       "text":`Hi! I respect your message but currently I support only images`
     }
+      callSendAPI(senderId,response);
   }else if (received_message.attachments){
 
   //vartmp= result; tmp="me";
@@ -109,12 +110,9 @@ function handleMessage(senderId,received_message){
     });
   //  let attachment_url = received_message.attachments[0].payload.url;
    //var json=getImageDetails(attachment_url);
-   var json = JSON.stringify(tmp);
-    response={
-      "text":tmp
-    }
+
   }
-  callSendAPI(senderId,response);
+//  callSendAPI(senderId,response);
 }
 
 function callSendAPI(senderId,response){

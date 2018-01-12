@@ -101,7 +101,7 @@ function handleMessage(senderId,received_message){
         }).then((result) => {
           result= JSON.stringify(result);
           response={
-            "text":result
+            "text":`result`
           }
     });
     let attachment_url = received_message.attachments[0].payload.url;

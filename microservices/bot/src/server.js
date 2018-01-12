@@ -122,7 +122,7 @@ function describesImage(result){
     //let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
     //let cat = JSON.stringify(result.description.captions);
     //return cat;
-    let name = JSON.stringify(result.categories[0].detail.celebrities[0].name);
+    let name = result.categories[0].detail.celebrities[0].name;
     txtMessage=`Oh thats probably `+name+` not you!`;
     return txtMessage;
   }else if(Object.keys(result.categories[0].detail.celebrities).length>1){

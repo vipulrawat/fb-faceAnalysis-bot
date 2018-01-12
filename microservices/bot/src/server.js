@@ -92,19 +92,19 @@ function handleMessage(senderId,received_message){
       "text":`Hi! I respect your message but currently I support only images`
     }
   }else if (received_message.attachments){
-    let tmp;
-    microsofComputerVision.analyzeImage({
+
+  let tmp =  microsofComputerVision.analyzeImage({
       "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": "https://goo.gl/Hpz7gi",
       "visual-features":"Tags, Faces"
         }).then((result) => {
-          tmp=result;
+          return result;
     });
     let attachment_url = received_message.attachments[0].payload.url;
    //var json=getImageDetails(attachment_url);
-   var json = attachment_url;
+   var json = JSON.stringify(tmp);
     response={
       "text":json
     }

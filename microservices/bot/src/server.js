@@ -128,16 +128,18 @@ function describesImage(result){
   }else if(Object.keys(result.categories[0].detail.celebrities).length>1){
     let caption = result.description.captions[0].text;
     return caption;
-  }else if(Object.keys(result.faces).length=0){
-    let caption = result.description.captions[0].text;
-    return caption;
-  }
-  else{
+  }else if(Object.keys(result.faces).length>0){
+
+
     let age=result.faces[0].age;
     let sex=result.faces[0].gender;
     let caption = result.description.captions[0].text;
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
     return txtMessage;
+  }
+  else {
+    let caption = result.description.captions[0].text;
+    return caption;
   }
 
 }

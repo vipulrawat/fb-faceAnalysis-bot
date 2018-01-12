@@ -100,8 +100,7 @@ function handleMessage(senderId,received_message){
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
-      "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult",
-      "details" : "Celebrities, Landmarks",
+      "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult"
         }).then((result) => {
           result =JSON.stringify(result);
           response={

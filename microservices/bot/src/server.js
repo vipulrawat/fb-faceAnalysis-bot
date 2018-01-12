@@ -104,9 +104,9 @@ function handleMessage(senderId,received_message){
     });
     let attachment_url = received_message.attachments[0].payload.url;
    //var json=getImageDetails(attachment_url);
-   var json = JSON.stringify(tmp);
+   var json = attachment_url;
     response={
-      "text":json 
+      "text":json
     }
   }
   callSendAPI(senderId,response);

@@ -139,7 +139,7 @@ function describesImage(result){
   }
   else {
     let caption = result.description.captions[0].text;
-    return caption;
+    return `caption`;
   }
 
 }

@@ -105,7 +105,7 @@ function handleMessage(senderId,received_message){
           response={
             "text":result
           }
-          callSendAPI(senderId,response)
+          callSendAPI(senderId,response);
     });
   //  let attachment_url = received_message.attachments[0].payload.url;
    //var json=getImageDetails(attachment_url);

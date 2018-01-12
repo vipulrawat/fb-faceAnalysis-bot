@@ -128,18 +128,10 @@ function getImageDetails(url){
     "url": "https://goo.gl/Hpz7gi",
     "visual-features":"Tags, Faces"
   }).then((result) => {
-      return result;    // { tags:
-                                //  [ { name: 'tree', confidence: 0.9994124174118042 },
-                                //    { name: 'outdoor', confidence: 0.9984000325202942 },
-                                //    { name: 'sky', confidence: 0.9974111914634705 },
-                                //    { name: 'grass', confidence: 0.9564579725265503 },
-                                //    { name: 'building', confidence: 0.9447041153907776 },
-                                //    { name: 'castle', confidence: 0.6080892086029053 } ],
-                                // requestId: 'c9c33a0d-7100-4cea-b37a-b93d2b3aff10',
-                                // metadata: { width: 883, height: 589, format: 'Jpeg' },
-                                // faces: [] }
+      return result;
   }).catch((err)=>{
       throw err;
+}
 }
 
 app.listen(8080, function () {

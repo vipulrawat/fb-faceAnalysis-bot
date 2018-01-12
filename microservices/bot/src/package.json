@@ -12,6 +12,6 @@
     "express": "^4.14.0",
     "moviedb": "^0.2.8",
     "request": "^2.81.0",
-    "microsoft-computer-vision": "*"
+    "microsoft-computer-vision": "^0.3.3"
   }
 }

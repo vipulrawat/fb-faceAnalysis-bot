@@ -1,6 +1,7 @@
 var request = require('request');
 var bodyParser = require('body-parser');
 var express = require('express');
+var microsofComputerVision = require("microsoft-computer-vision");
 var app = express();
 
 app.use(bodyParser.json());
@@ -16,8 +17,6 @@ let FACEBOOK_PAGE_ACCESS_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 let MS_SUBS_KEY = process.env.MS_SUBS_KEY;
 let FACEBOOK_SEND_MESSAGE_URL = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + FACEBOOK_PAGE_ACCESS_TOKEN;
 //let BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags&subscription-key='+MS_SUBS_KEY;
-
-
 
 
 //your routes here
@@ -96,7 +95,7 @@ function handleMessage(senderId,received_message){
     let attachment_url = received_message.attachments[0].payload.url;
     var json=getImageDetails(attachment_url);
     response={
-      "text":`LINK:`+json
+      "text":json
     }
   }
   callSendAPI(senderId,response);
@@ -122,8 +121,25 @@ function callSendAPI(senderId,response){
   });
 }
 function getImageDetails(url){
-
-  return MS_SUBS_KEY;
+  microsofComputerVision.analyzeImage({
+    "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
+    "request-origin":"westcentralus",
+    "content-type": "application/json",
+    "url": "https://goo.gl/Hpz7gi",
+    "visual-features":"Tags, Faces"
+  }).then((result) => {
+      return result;    // { tags:
+                                //  [ { name: 'tree', confidence: 0.9994124174118042 },
+                                //    { name: 'outdoor', confidence: 0.9984000325202942 },
+                                //    { name: 'sky', confidence: 0.9974111914634705 },
+                                //    { name: 'grass', confidence: 0.9564579725265503 },
+                                //    { name: 'building', confidence: 0.9447041153907776 },
+                                //    { name: 'castle', confidence: 0.6080892086029053 } ],
+                                // requestId: 'c9c33a0d-7100-4cea-b37a-b93d2b3aff10',
+                                // metadata: { width: 883, height: 589, format: 'Jpeg' },
+                                // faces: [] }
+  }).catch((err)=>{
+      throw err;
 }
 
 app.listen(8080, function () {

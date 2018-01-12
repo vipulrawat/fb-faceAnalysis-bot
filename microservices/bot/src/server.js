@@ -117,9 +117,11 @@ function handleMessage(senderId,received_message){
 }
 
 function describesImage(result){
+  if(Object.keys(result.categories[0].detail.celebrities).length>0){
   let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
   //let cat = JSON.stringify(result.description.captions);
-  return cat;
+  return cat;}
+  return `no`;
 }
 
 function callSendAPI(senderId,response){

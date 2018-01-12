@@ -95,13 +95,14 @@ function handleMessage(senderId,received_message){
   }else if (received_message.attachments){
    let attachment_url = received_message.attachments[0].payload.url;
   //vartmp= result; tmp="me";
-  microsofComputerVision.analyzeImage({
+  microsofComputerVision.describeImage({
       "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
       "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult"
         }).then((result) => {
+
           result =JSON.stringify(result);
           response={
             "text":result // Can be at least one or more, separated by comma

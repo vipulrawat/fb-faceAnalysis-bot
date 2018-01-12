@@ -137,7 +137,7 @@ function describesImage(result){
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
     return txtMessage;
   }
-    txtMessage = result.description.captions[0].text;
+    txtMessage = JSON.stringify(result.description.captions[0].text);
     return txtMessage;
 
 }

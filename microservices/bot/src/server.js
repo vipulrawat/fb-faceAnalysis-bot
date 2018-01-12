@@ -100,11 +100,12 @@ function handleMessage(senderId,received_message){
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
-      "visual-features":"Categories"
+      "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult",
+      "details" : "Celebrities, Landmarks",
         }).then((result) => {
           result =JSON.stringify(result);
           response={
-            "text":result
+            "text":result // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });

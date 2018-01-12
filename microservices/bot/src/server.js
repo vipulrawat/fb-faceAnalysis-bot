@@ -118,7 +118,7 @@ function handleMessage(senderId,received_message){
 
 function describesImage(result){
 
-  if(result.categories[0].detail.celebrities[1]){
+  if(2>1){
     return JSON.stringify(result.categories[0].detail.celebrities[1]);
   }
   return `notfound`;

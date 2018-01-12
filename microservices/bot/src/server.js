@@ -121,7 +121,7 @@ function describesImage(result){
     //let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
     //let cat = JSON.stringify(result.description.captions);
     //return cat;
-    Object.keys(result.categories[0].detail.celebrities).forEach(function(element){
+    result.categories[0].detail.celebrities.forEach(function(element){
       let cat = JSON.stringify(element.name);
       return cat
     });

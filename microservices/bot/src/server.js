@@ -100,6 +100,7 @@ function handleMessage(senderId,received_message){
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
+      "visual-features":"Categories"
         }).then((result) => {
           result =JSON.stringify(result);
           response={

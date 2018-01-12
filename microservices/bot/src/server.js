@@ -102,9 +102,9 @@ function handleMessage(senderId,received_message){
       "url": "https://goo.gl/Hpz7gi",
       "visual-features":"Tags, Faces"
         }).then((result) => {
-          result =JSON.stringify(result.tags[0]);
+          result =JSON.stringify(result.tags);
           response={
-            "text":`result`
+            "text":result
           }
           callSendAPI(senderId,response);
     });

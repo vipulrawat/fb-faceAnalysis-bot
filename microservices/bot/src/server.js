@@ -5,10 +5,17 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-
+var params = {
+           "visualFeatures": "Categories,Description,Color",
+           "details": "",
+           "language": "en",
+       };
 let FACEBOOK_VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN;
 let FACEBOOK_PAGE_ACCESS_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
+let MS_SUBS_KEY = process.env.MS_SUBS_KEY;
 let FACEBOOK_SEND_MESSAGE_URL = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + FACEBOOK_PAGE_ACCESS_TOKEN;
+let BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags&subscription-key='+MS_SUBS_KEY;
+
 
 
 
@@ -86,8 +93,9 @@ function handleMessage(senderId,received_message){
     }
   }else if (received_message.attachments){
     let attachment_url = received_message.attachments[0].payload.url;
+    var json=getImageDetails(attachment_url);
     response={
-      "text":`LINK:`+attachment_url
+      "text":`LINK:`+json
     }
   }
   callSendAPI(senderId,response);
@@ -112,7 +120,10 @@ function callSendAPI(senderId,response){
         }
   });
 }
-
+function getImageDetails(url){
+  let url=`haha`;
+  return url;
+}
 
 app.listen(8080, function () {
   console.log('Example app listening on port 8080!');

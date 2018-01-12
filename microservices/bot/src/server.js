@@ -91,7 +91,7 @@ function handleMessage(senderId,received_message){
     response={
       "text":`Hi! I respect your message but currently I support only images`
     }
-      callSendAPI(senderId,response);
+    callSendAPI(senderId,response);
   }else if (received_message.attachments){
 
   //vartmp= result; tmp="me";
@@ -102,9 +102,9 @@ function handleMessage(senderId,received_message){
       "url": "https://goo.gl/Hpz7gi",
       "visual-features":"Tags, Faces"
         }).then((result) => {
-          result =JSON.stringify(result);
+          result =JSON.stringify(result.tags[0]);
           response={
-            "text":result
+            "text":`result`
           }
           callSendAPI(senderId,response);
     });

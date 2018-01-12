@@ -93,7 +93,7 @@ function handleMessage(senderId,received_message){
     }
   }else if (received_message.attachments){
 
-  let tmp;
+  var tmp="me";
   microsofComputerVision.analyzeImage({
       "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
       "request-origin":"westcentralus",

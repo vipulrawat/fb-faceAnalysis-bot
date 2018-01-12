@@ -93,22 +93,21 @@ function handleMessage(senderId,received_message){
     }
     callSendAPI(senderId,response);
   }else if (received_message.attachments){
-
+   let attachment_url = received_message.attachments[0].payload.url;
   //vartmp= result; tmp="me";
   microsofComputerVision.analyzeImage({
       "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
       "request-origin":"westcentralus",
       "content-type": "application/json",
-      "url": "https://goo.gl/Hpz7gi",
-      "visual-features":"Tags, Faces"
+      "url": attachment_url,
         }).then((result) => {
-          result =JSON.stringify(result.tags);
+          result =JSON.stringify(result);
           response={
             "text":result
           }
           callSendAPI(senderId,response);
     });
-  //  let attachment_url = received_message.attachments[0].payload.url;
+
    //var json=getImageDetails(attachment_url);
 
   }

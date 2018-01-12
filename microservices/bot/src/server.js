@@ -137,10 +137,8 @@ function describesImage(result){
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
     return txtMessage;
   }
-  else {
-    let caption = result.description.captions[0].text;
-    return `caption`;
-  }
+    txtMessage = result.description.captions[0].text;
+    return txtMessage;
 
 }
 

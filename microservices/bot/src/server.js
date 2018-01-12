@@ -92,11 +92,22 @@ function handleMessage(senderId,received_message){
       "text":`Hi! I respect your message but currently I support only images`
     }
   }else if (received_message.attachments){
+    microsofComputerVision.analyzeImage({
+      "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
+      "request-origin":"westcentralus",
+      "content-type": "application/json",
+      "url": "https://goo.gl/Hpz7gi",
+      "visual-features":"Tags, Faces"
+        }).then((result) => {
+          response={
+            "text":result
+          }
+    });
     let attachment_url = received_message.attachments[0].payload.url;
-    var json=getImageDetails(attachment_url);
-    response={
-      "text":json
-    }
+  //  var json=getImageDetails(attachment_url);
+    //response={
+    //  "text":json
+  //  }
   }
   callSendAPI(senderId,response);
 }
@@ -120,6 +131,7 @@ function callSendAPI(senderId,response){
         }
   });
 }
+/*
 function getImageDetails(url){
   microsofComputerVision.analyzeImage({
     "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
@@ -132,6 +144,7 @@ function getImageDetails(url){
   });
 }
 
+*/
 app.listen(8080, function () {
   console.log('Example app listening on port 8080!');
 });

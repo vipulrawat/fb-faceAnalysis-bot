@@ -103,7 +103,7 @@ function handleMessage(senderId,received_message){
         }).then((result) => {
           result =JSON.stringify(result);
           response={
-            "text":`result`
+            "text":result
           }
           callSendAPI(senderId,response)
     });

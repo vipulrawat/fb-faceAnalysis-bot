@@ -99,6 +99,7 @@ function handleMessage(senderId,received_message){
       "url": "https://goo.gl/Hpz7gi",
       "visual-features":"Tags, Faces"
         }).then((result) => {
+          result= JSON.stringify(result);
           response={
             "text":result
           }

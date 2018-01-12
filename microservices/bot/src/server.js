@@ -119,7 +119,7 @@ function handleMessage(senderId,received_message){
 function describesImage(result){
   let cat = JSON.stringify(result.categories[0]);
   let des = JSON.stringify(result.captions[0].text);
-  return cat+des;
+  return cat;
 }
 function callSendAPI(senderId,response){
   let request_body={

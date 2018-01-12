@@ -102,8 +102,8 @@ function handleMessage(senderId,received_message){
       "url": attachment_url,
       "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult"
         }).then((result) => {
-          //let temp = describesImage(result);
-          result =JSON.stringify(result.categories);
+          let temp = describesImage(result);
+          //result =JSON.stringify(result.categories);
           response={
             "text":result // Can be at least one or more, separated by comma
           }
@@ -115,13 +115,12 @@ function handleMessage(senderId,received_message){
   }
 //  callSendAPI(senderId,response);
 }
-/*
-function describesImage(result){
-  let cat = JSON.stringify(result.categories[0]);
 
+function describesImage(result){
+  let cat = JSON.stringify(result.categories[0].name);
   return cat;
 }
-*/
+
 function callSendAPI(senderId,response){
   let request_body={
     "recipient":{

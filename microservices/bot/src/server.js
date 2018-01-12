@@ -118,9 +118,14 @@ function handleMessage(senderId,received_message){
 
 function describesImage(result){
   if(Object.keys(result.categories[0].detail.celebrities).length>0){
-  let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
-  //let cat = JSON.stringify(result.description.captions);
-  return cat;}
+    //let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
+    //let cat = JSON.stringify(result.description.captions);
+    //return cat;
+    result.categories[0].detail.celebrities.forEach(element){
+      let cat = JSON.stringify(element.name);
+      return cat
+    }
+  }
   return `no`;
 }
 

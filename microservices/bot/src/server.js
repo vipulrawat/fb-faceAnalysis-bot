@@ -89,9 +89,9 @@ function handleMessage(senderId,received_message){
       "url": attachment_url,
       "visual-features":"Categories,Description,Faces,"
         }).then((result) => {
-        //  let msg = describesImage(result);
+          let msg = describesImage(result);
           response={
-            "text":JSON.stringify(result) // Can be at least one or more, separated by comma
+            "text":msg // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });
@@ -105,21 +105,20 @@ function describesImage(result){
     txtMessage=`Oh thats probably `+name+` not you! :P`;
     return txtMessage;
   }
-  //else if(Object.keys(result.categories[0].detail.celebrities).length>1)
-  else if (Object.keys(result.categories).length>1){
-    //let caption = result.description.captions[0].text;
-    //return caption;
-    return `caught more than 1 celebs`;
-  }else if(Object.keys(result.faces).length===1){
+//  else if(Object.keys(result.categories[0].detail.celebrities).length>1)
+//    let caption = result.description.captions[0].text;
+//    return caption;
+//}
+  else if(Object.keys(result.faces).length===1){
     let age=result.faces[0].age;
     let sex=result.faces[0].gender;
     let caption = result.description.captions[0].text;
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
     return txtMessage;
   }else{
-    //txtMessage = JSON.stringify(result.description.captions[0].text);
-    //return `txtMessage`;
-    return `last message`;
+    txtMessage = result.description.captions[0].text;
+    return `txtMessage`;
+
   }
 }
 

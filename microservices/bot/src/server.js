@@ -87,7 +87,7 @@ function handleMessage(senderId,received_message){
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
-      "visual-features":"Categories,Description,Faces,"
+      "visual-features":"Categories,Description,Faces"
         }).then((result) => {
           let msg = describesImage(result);
           response={

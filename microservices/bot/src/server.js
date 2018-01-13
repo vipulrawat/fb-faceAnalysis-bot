@@ -87,11 +87,11 @@ function handleMessage(senderId,received_message){
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
-      "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult"
+      "visual-features":"Categories,Description,Faces,"
         }).then((result) => {
-          //let msg = describesImage(result);
+          let msg = describesImage(result);
           response={
-            "text":JSON.stringify(result) // Can be at least one or more, separated by comma
+            "text":msg // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });
@@ -104,10 +104,13 @@ function describesImage(result){
     let name = result.categories[0].detail.celebrities[0].name;
     txtMessage=`Oh thats probably `+name+` not you! :P`;
     return txtMessage;
-  }else if(Object.keys(result.categories[0].detail.celebrities).length>1){
-    let caption = result.description.captions[0].text;
-    return caption;
-  }else if(Object.keys(result.faces).length>0){
+  }
+  //else if(Object.keys(result.categories[0].detail.celebrities).length>1)
+  else if (Object.keys(result.categories).length>1){
+    //let caption = result.description.captions[0].text;
+    //return caption;
+    return `caught more than 1 celebs`;
+  }else if(Object.keys(result.faces).length===1){
     let age=result.faces[0].age;
     let sex=result.faces[0].gender;
     let caption = result.description.captions[0].text;
@@ -115,7 +118,8 @@ function describesImage(result){
     return txtMessage;
   }else{
     //txtMessage = JSON.stringify(result.description.captions[0].text);
-    return `txtMessage`;
+    //return `txtMessage`;
+    return `last message`;
   }
 }
 

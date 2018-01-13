@@ -117,7 +117,7 @@ function describesImage(result){
     return txtMessage;
   }else{
     txtMessage = result.description.captions[0].text;
-    return `txtMessage`;
+    return txtMessage;
 
   }
 }

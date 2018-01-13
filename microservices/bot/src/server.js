@@ -6,22 +6,15 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-/**var params = {
-           "visualFeatures": "Categories,Description,Color",
-           "details": "",
-           "language": "en",
-       };
-       */
+
 let FACEBOOK_VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN;
 let FACEBOOK_PAGE_ACCESS_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 let MS_SUBS_KEY = process.env.MS_SUBS_KEY;
 let FACEBOOK_SEND_MESSAGE_URL = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + FACEBOOK_PAGE_ACCESS_TOKEN;
-//let BASE_URL = 'https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags&subscription-key='+MS_SUBS_KEY;
-
 
 //your routes here
 app.get('/', function (req, res) {
-    res.send("Hello World, I am a bot.")
+    res.send("Hello World, I am a Facebook messenger bot.")
 });
 
 app.get('/webhook/', function(req, res) {
@@ -41,8 +34,6 @@ app.post('/webhook/', function(req, res) {
               var senderId = messagingObject.sender.id;
               if (messagingObject.message) {
                 if (!messagingObject.message.is_echo) {
-                  //Assuming that everything sent to this bot is a movie name.
-                  //YHAA MERA TEXT REPLY KA FUNCTION AAEGA
                   handleMessage(senderId,messagingObject.message)
                 }
               } else if (messagingObject.postback) {
@@ -61,7 +52,6 @@ app.post('/webhook/', function(req, res) {
   }
   res.sendStatus(200);
 })
-
 
 function showTypingIndicatorToUser(senderId, isTyping) {
   var senderAction = isTyping ? 'typing_on' : 'typing_off';
@@ -83,8 +73,6 @@ function showTypingIndicatorToUser(senderId, isTyping) {
   });
 }
 
-
-/////////
 function handleMessage(senderId,received_message){
   let response;
   if(received_message.text){
@@ -94,52 +82,41 @@ function handleMessage(senderId,received_message){
     callSendAPI(senderId,response);
   }else if (received_message.attachments){
    let attachment_url = received_message.attachments[0].payload.url;
-  //vartmp= result; tmp="me";
-  microsofComputerVision.analyzeImage({
+   microsofComputerVision.analyzeImage({
       "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
       "request-origin":"westcentralus",
       "content-type": "application/json",
       "url": attachment_url,
       "visual-features":"Categories,Tags,Description,Faces,ImageType,Color,Adult"
         }).then((result) => {
-          let temp = describesImage(result);
-          //result =JSON.stringify(result.description.captions);
+          let msg = describesImage(result);
           response={
-            "text":temp // Can be at least one or more, separated by comma
+            "text":msg // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });
-
-   //var json=getImageDetails(attachment_url);
-
   }
-//  callSendAPI(senderId,response);
 }
 
 function describesImage(result){
   var txtMessage;
   if(Object.keys(result.categories[0].detail.celebrities).length===1){
-    //let cat = JSON.stringify(result.categories[0].detail.celebrities[0].name);
-    //let cat = JSON.stringify(result.description.captions);
-    //return cat;
     let name = result.categories[0].detail.celebrities[0].name;
-    txtMessage=`Oh thats probably `+name+` not you!`;
+    txtMessage=`Oh thats probably `+name+` not you! :P`;
     return txtMessage;
   }else if(Object.keys(result.categories[0].detail.celebrities).length>1){
     let caption = result.description.captions[0].text;
     return caption;
   }else if(Object.keys(result.faces).length>0){
-
-
     let age=result.faces[0].age;
     let sex=result.faces[0].gender;
     let caption = result.description.captions[0].text;
     txtMessage=`You are a `+sex+` and looks around `+age+` years old. I can see `+caption;
     return txtMessage;
+  }else{
+    //txtMessage = JSON.stringify(result.description.captions[0].text);
+    return `txtMessage`;
   }
-    txtMessage = JSON.stringify(result.description.captions[0].text);
-    return txtMessage;
-
 }
 
 function callSendAPI(senderId,response){
@@ -161,20 +138,7 @@ function callSendAPI(senderId,response){
         }
   });
 }
-/*
-function getImageDetails(url){
-  microsofComputerVision.analyzeImage({
-    "Ocp-Apim-Subscription-Key": MS_SUBS_KEY,
-    "request-origin":"westcentralus",
-    "content-type": "application/json",
-    "url": "https://goo.gl/Hpz7gi",
-    "visual-features":"Tags, Faces"
-      }).then((result) => {
-      return result;
-  });
-}
 
-*/
 app.listen(8080, function () {
   console.log('Example app listening on port 8080!');
 });

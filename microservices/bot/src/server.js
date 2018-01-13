@@ -89,9 +89,9 @@ function handleMessage(senderId,received_message){
       "url": attachment_url,
       "visual-features":"Categories,Description,Faces,"
         }).then((result) => {
-          let msg = describesImage(result);
+        //  let msg = describesImage(result);
           response={
-            "text":msg // Can be at least one or more, separated by comma
+            "text":JSON.stringify(result) // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });

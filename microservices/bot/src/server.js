@@ -91,7 +91,7 @@ function handleMessage(senderId,received_message){
         }).then((result) => {
           //let msg = describesImage(result);
           response={
-            "text":result // Can be at least one or more, separated by comma
+            "text":JSON.stringify(result) // Can be at least one or more, separated by comma
           }
           callSendAPI(senderId,response);
     });

@@ -105,10 +105,6 @@ function describesImage(result){
     txtMessage=`Oh thats probably `+name+` not you! :P`;
     return txtMessage;
   }
-//  else if(Object.keys(result.categories[0].detail.celebrities).length>1)
-//    let caption = result.description.captions[0].text;
-//    return caption;
-//}
   else if(Object.keys(result.faces).length===1){
     let age=result.faces[0].age;
     let sex=result.faces[0].gender;

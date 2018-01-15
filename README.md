@@ -6,7 +6,7 @@ You can read the [documentation](https://developers.facebook.com/docs/messenger-
 For the chat bot to function we'll need a server that will receive the messages sent by the Facebook users, process this message and respond back to the user. To send messages back to the server we will use the graph API provided by Facebook. For the Facebook servers to talk to our server, the endpoint URL of our server should be accessible to the Facebook server and should use a secure HTTPS URL. For this reason, running our server locally will not work and instead we need to host our server online. In this tutorial, we are going to deploy our server on Hasura which automatically provides SSL-enabled domains.
 
 ## Have a look
-![Final screen](https://raw.githubusercontent.com/vipulrawat/fb-pincode-bot/master/assets/demo_gif.gif "Final screen demo")
+![Final screen](https://github.com/vipulrawat/fb-faceAnalysis-bot/blob/master/assets/demo_gif.gif "Final screen demo")
 
 ## Features
 

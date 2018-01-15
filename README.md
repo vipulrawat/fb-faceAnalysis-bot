@@ -121,7 +121,7 @@ Next, open up your facebook page.
 
 * Instead, if your button says **+ Add Button**, click on it.
 
-![Add button](https://raw.githubusercontent.com/vipulrawat/fb-pincode-bot/master/assets/6.png "Add Button screen")
+![Add button](https://github.com/vipulrawat/fb-faceAnalysis-bot/blob/master/assets/addButton.png "Add Button screen")
 
 * Next, click on **Use our messenger bot**. Then, **Get Started** and finally **Add Button**.
 * You will now see that the **+ Add button** has now changed to **Get Started**. Hovering over this will show you a list with an item named **Test this button**. Click on it to start chatting with your bot.
